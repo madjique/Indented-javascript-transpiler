@@ -1,15 +1,29 @@
 import re
 
-#my regular expressions
-r = "function +\w+\(\w*\) +:\n"
 #open the file and put it into a string
-file = open("test.js","r")
-text = file.readlines()
+JSfile = open("test.jsi","r")
+text = JSfile.readlines()
+resultFile = open("resulat.js","w")
 
-print(text)
+#stack of indentations works like a counter for closing
+stack = []
+result=""
 
+#Compiler
 for line in text :
-    if(re.match(r,line)):
-        print("function regnosized")
+    while len(stack)>0 and (len(re.findall(" {4}",line))<len(stack)):
+            result += "\t"*(len(stack)-1) + stack.pop() + "\n"
+    if re.match(".*:\n",line) :
+        line = line.replace(":","{")
+        result += line
+        stack.append("}")
     else :
-        print("no function")
+        result += line
+
+#for last line exception
+while len(stack) > 0 :
+    result += "\n" + "\t"*(len(stack)-1) + stack.pop()
+
+#writing in the file
+print(result,file=resultFile)
+
