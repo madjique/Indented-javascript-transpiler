@@ -14,7 +14,7 @@ for line in text :
     while len(stack)>0 and (len(re.findall(" {4}",line))<len(stack)):
             result += "\t"*(len(stack)-1) + stack.pop() + "\n"
     if re.match(".*:\n",line) :
-        line = line.replace(":","{")
+        line = line.replace(":\n","{\n")
         result += line
         stack.append("}")
     else :

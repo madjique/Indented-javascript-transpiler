@@ -22,3 +22,11 @@ arr.map(() => {
     fixing()
 }
 )
+
+object = {
+    bta : "dfrg",
+    dtf : "ggg",
+    obe :{
+        hah : "freg"
+	}
+}
