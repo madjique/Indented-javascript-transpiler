@@ -1,71 +1,244 @@
-# Indentation-JS-Compiler
+# JSI - Indented JavaScript Transpiler
 
-# Quick Introduction 
+> Write JavaScript with Python-like indentation syntax — no more curly braces!
 
-This is a kind of an **interpreated syntax** derived from JS rather than a new language 
-Lasy to open brackets and reorder them 
-you like python syntax (like me) with indentations
-this tools is made for you ! (and me for sure :p) 
-look attentively to this description before using it
-> i used compiler rather than script to make in highlight *the concept of a new syntax* 
+**JSI** (JavaScript Indented) is a transpiler that converts a Python-like indentation-based syntax into standard JavaScript. If you love Python's clean, bracket-free syntax but work with JavaScript, this tool is for you.
 
-# Getting started
+---
 
-easy guide to start using JSI the syntax
+## Table of Contents
 
-### Setting parameters
+- [What is JSI?](#what-is-jsi)
+- [Quick Example](#quick-example)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Syntax Guide](#syntax-guide)
+- [Important Notes](#important-notes)
+- [Error Handling](#error-handling)
+- [Contributing](#contributing)
 
-You can find in the *compiler.py*
-```Python
-#Here Put your file name
-YourFileName = "test.jsi"
-'''needs to be in .JSI format'''
-YourOutputFileName = "result.js"
-'''needs to be in .JS format'''
+---
+
+## What is JSI?
+
+JSI introduces an alternative syntax for writing JavaScript code:
+
+| Traditional JS | JSI Syntax |
+|----------------|------------|
+| Curly braces `{}` | Colons `:` + indentation |
+| Verbose block definitions | Clean, Python-like structure |
+
+The transpiler reads `.jsi` files and outputs standard `.js` files that run anywhere JavaScript runs.
+
+---
+
+## Quick Example
+
+**Before (JSI syntax):**
+```javascript
+function greet(name):
+    console.log("Hello, " + name)
+
+const double = (x) => :
+    return x * 2
 ```
 
+**After (JavaScript output):**
+```javascript
+function greet(name){
+    console.log("Hello, " + name)
+}
 
-### Compilation
-
-After setting your files
-just be in the same path as your files and type in the terminal
-```powershell
-python compiler.py
+const double = (x) => {
+    return x * 2
+}
 ```
 
-# Syntax 
+---
 
-Good news ! Same syntax as JS dont be lost 
-use colon ":" instead of opening brackets
-and use indetations "\t" to 
+## Installation
 
-### Important To know
+### Prerequisites
 
-* "::" for object in an object 
-> look at the example  below
+- **Python 3.x** installed on your system
 
-* When using arrow functions in perenthese "()" the closing parenthese ")" should be in a diffrent line than the last instruction of the scope
-> example using map() function below 
+### Setup
 
-* Be sure that your **tab** caracter in your text editor is set to **4 Four spaces** 
-> this is required so the compiler can work
+1. Clone or download this repository:
+   ```bash
+   git clone https://github.com/your-username/Indented-javascript-transpiler.git
+   cd Indented-javascript-transpiler
+   ```
 
-### Syntax Errors
+2. (Optional) Make the transpiler executable globally:
+   ```bash
+   chmod +x compiler.py
+   ```
 
-You can notice your errors in the generated JS file and fix it 
-So , you already get it , the syntax errors related with JS are the same in JSI
+No additional dependencies required — the transpiler uses only Python's standard library.
 
-> if you find an issue related with the compiler and  not with your JS code 
-**Please submit this issue**
+---
 
+## Usage
 
-# Samples
-### JSI syntax
-![Image of Result](https://i.ibb.co/TwqLMMC/JSI-sample.png)
-### JS result
-![Image of JSI](https://i.ibb.co/WvGB0r1/JSI-compilation-result.png)
+### Basic Command
 
-# Contribution 
+```bash
+python3 compiler.py <input.jsi> [output.js]
+```
 
-Tts an *open source* project show your imagination
-you can look to the **Issue tab** to help us improve the compiler (or script) 
+### Arguments
+
+| Argument | Required | Description |
+|----------|----------|-------------|
+| `input.jsi` | ✓ | Your source file in JSI format |
+| `output.js` | ✗ | Output file name (defaults to input name with `.js` extension) |
+
+### Examples
+
+```bash
+# Transpile app.jsi → app.js
+python3 compiler.py app.jsi
+
+# Transpile with custom output name
+python3 compiler.py input.jsi bundle.js
+
+# Transpile files in subdirectories
+python3 compiler.py src/main.jsi
+```
+
+### Help
+
+Run without arguments to see usage information:
+
+```bash
+python3 compiler.py
+```
+
+---
+
+## Syntax Guide
+
+### Basic Rules
+
+1. **Replace `{` with `:`** — Use a colon at the end of the line instead of an opening brace
+2. **Use indentation** — 4 spaces define the scope (like Python)
+3. **No closing braces needed** — The transpiler handles them automatically
+
+### Functions
+
+```javascript
+// Classic function
+function sayHello():
+    console.log("Hello!")
+
+// Arrow function
+const add = (a, b) => :
+    return a + b
+```
+
+### Conditionals
+
+```javascript
+if (x > 10) :
+    console.log("Greater than 10")
+else :
+    console.log("10 or less")
+```
+
+### Objects
+
+Use `:` for simple objects and `::` for nested objects:
+
+```javascript
+const user = :
+    name: "John",
+    age: 30,
+    address ::
+        city: "Paris",
+        country: "France"
+```
+
+**Transpiles to:**
+```javascript
+const user = {
+    name: "John",
+    age: 30,
+    address :{
+        city: "Paris",
+        country: "France"
+    }
+}
+```
+
+### Classes
+
+```javascript
+class Animal :
+    constructor(name):
+        this.name = name
+    
+    speak():
+        console.log(this.name + " makes a sound")
+```
+
+### Arrow Functions in Callbacks
+
+When using arrow functions inside parentheses (like `.map()`, `.filter()`), place the closing `)` on a new line:
+
+```javascript
+const numbers = [1, 2, 3]
+const doubled = numbers.map((n) => :
+    return n * 2
+)
+```
+
+---
+
+## Important Notes
+
+> **⚠️ Tab Configuration**  
+> Your text editor must use **4 spaces** for indentation (not tabs). This is required for the transpiler to work correctly.
+
+### Syntax Summary
+
+| Pattern | JSI Syntax | Notes |
+|---------|------------|-------|
+| Open block | `:` at end of line | Replaces `{` |
+| Nested object | `::` | For objects inside objects |
+| Scope | 4-space indentation | Must be consistent |
+| Callback closing | `)` on new line | For arrow functions in parentheses |
+
+---
+
+## Error Handling
+
+The transpiler provides clear error messages:
+
+```bash
+$ python compiler.py nonexistent.jsi
+Error: File 'nonexistent.jsi' not found.
+```
+
+- **Syntax errors** in your JavaScript logic will appear in the generated `.js` file
+- For issues specific to the transpiler (not your JS code), please [open an issue](../../issues)
+
+---
+
+## Contributing
+
+This is an **open source project** — contributions are welcome!
+
+- Check the [Issues tab](../../issues) for ways to help
+- Feel free to submit pull requests with improvements
+- Share your ideas and suggestions
+
+---
+
+## License
+
+This project is open source. See the repository for license details.
+
+---
+
+**Happy coding without curly braces! 🎉**
