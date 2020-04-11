@@ -1,13 +1,14 @@
 # Indentation-JS-Compiler
+or indent javascript
 
 # Quick Introduction 
 
 This is a kind of an **interpreated syntax** derived from JS rather than a new language 
 Lasy to open brackets and reorder them 
 you like python syntax (like me) with indentations
-this tools is made for you ! (and me for sure :p) 
+this tools is made for you ! (and me for sure :smile: ) 
 look attentively to this description before using it
-> i used compiler rather than script to make in highlight *the concept of a new syntax* 
+> i used compiler rather than script to make in highlight **the concept of a new syntax** 
 
 # Getting started
 
@@ -15,7 +16,7 @@ easy guide to start using JSI the syntax
 
 ### Setting parameters
 
-You can find in the *compiler.py*
+You can find in the **compiler.py**
 ```Python
 #Here Put your file name
 YourFileName = "test.jsi"
@@ -61,11 +62,82 @@ So , you already get it , the syntax errors related with JS are the same in JSI
 
 # Samples
 ### JSI syntax
-![Image of Result](https://i.ibb.co/TwqLMMC/JSI-sample.png)
+
+```dart
+//this is a classic function
+function A():
+    console.log("function A")
+//this is an arrow function
+const arrowfunc = (e) => :
+    if (e > 0) :
+        console.log("greater than 0")
+    else :
+        console.log("negative")
+//this is an object JSON
+obj = :
+    id : 0,
+    anotherProp : "banana",
+    objInObj ::
+        id : 5,
+        props : "pancake"
+//a class also
+class Rabbit :
+    constructor(name,color,age,height,weight):
+        this.name = name
+        this.color = color
+        this.array = [age,height,weight]
+    //conveting to int using map in this method
+    adabtType():
+        this.array.map((e) => :
+            int(e)
+        )
+        console.log("Done")
+```
 ### JS result
-![Image of JSI](https://i.ibb.co/WvGB0r1/JSI-compilation-result.png)
+
+```javascript
+//this is a classic function
+function A(){
+    console.log("function A")
+}
+//this is an arrow function
+const arrowfunc = (e) => {
+    if (e > 0) {
+        console.log("greater than 0")
+	}
+    else {
+        console.log("negative")
+	}
+}
+//this is an object JSON
+obj = {
+    id : 0,
+    anotherProp : "banana",
+    objInObj :{
+        id : 5,
+        props : "pancake"
+	}
+}
+//a class also
+class Rabbit {
+    constructor(name,color,age,height,weight){
+        this.name = name
+        this.color = color
+        this.array = [age,height,weight]
+	}
+    //conveting to int using map in this method
+    adabtType(){
+        this.array.map((e) => {
+            int(e)
+		}
+        )
+        console.log("Done")
+	}
+}
+
+```
 
 # Contribution 
 
 Tts an *open source* project show your imagination
-you can look to the **Issue tab** to help us improve the compiler (or script) 
+you can look to the **Issues tab** to help us improve the compiler (or script) 
