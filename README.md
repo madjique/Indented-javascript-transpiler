@@ -61,12 +61,9 @@ So , you already get it , the syntax errors related with JS are the same in JSI
 
 # Samples
 ### JSI syntax
-**replace with img link**
-![Image of JSI](https://octodex.github.com/images/yaktocat.png)
+![Image of Result](https://i.ibb.co/TwqLMMC/JSI-sample.png)
 ### JS result
-**replace with img link**
-![Image of Result](https://octodex.github.com/images/yaktocat.png)
-
+![Image of JSI](https://i.ibb.co/WvGB0r1/JSI-compilation-result.png)
 
 # Contribution 
 
